@@ -5,7 +5,7 @@ const Appointment = () => {
     <div className="hero py-8 bg-base-200">
       <div className="hero-content text-center">
         <div className="max-w-md">
-          <h1 className="text-4xl font-bold">Get Appointment!</h1>
+          <h1 className="text-4xl font-bold">Get Your Appointment!</h1>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

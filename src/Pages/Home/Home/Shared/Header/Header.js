@@ -47,7 +47,7 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-outline btn-primary btn-xs btn-md btn glass"><RiUserSharedFill/> Login</button>
+        <button className="btn btn glass bg-primary text-black btn-xs btn-md"><RiUserSharedFill/> Login</button>
       </div>
     </div>
   );
