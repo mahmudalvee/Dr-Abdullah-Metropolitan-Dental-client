@@ -7,8 +7,10 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ServiceReviewCard from "./ServiceReviewCard";
 import toast, { Toaster } from "react-hot-toast";
 import { RiUserSharedFill, RiUserUnfollowFill } from "react-icons/ri";
+import useTitle from "../../hooks/useTitle";
 
 const ServiceDetails = () => {
+    useTitle('Service Details')
   const { _id, img, price, title, rating, description } = useLoaderData();
 
   //all reviews

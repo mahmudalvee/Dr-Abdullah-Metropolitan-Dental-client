@@ -3,8 +3,10 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import img from '../../dentist-assets/login.PNG';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const SignUp = () => {
+    useTitle('Signup')
     const {createUser} = useContext(AuthContext);
     const handleSignUp = event =>{
         event.preventDefault();
