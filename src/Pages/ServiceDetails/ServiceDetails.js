@@ -51,6 +51,7 @@ console.log(reviews)
               if(data.acknowledged){
                   alert('review placed successfully')
                   form.reset();
+                  window.location.reload();
               }
           })
           .catch(er => console.error(er));

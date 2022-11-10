@@ -13,9 +13,14 @@ const Header = () => {
       </li>
       {
         user?.email ?
+        <>
         <li className="font-semibold text-blue-700">
         <Link to="/myReviews">My Reviews</Link>
         </li>
+        <li className="font-semibold text-blue-700">
+        <Link to="/addService">Add Service</Link>
+        </li>
+        </>
         :
         <></>
       }
