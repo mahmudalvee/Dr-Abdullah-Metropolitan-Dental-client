@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const HomeServices = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/homeServices")
+    fetch("https://dentist-server-alpha.vercel.app/homeServices")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

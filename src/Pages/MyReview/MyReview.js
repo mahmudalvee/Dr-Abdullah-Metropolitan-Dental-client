@@ -11,7 +11,7 @@ const MyReview = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myReviews?email=${user?.email}`)
+    fetch(`https://dentist-server-alpha.vercel.app/myReviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
@@ -19,7 +19,7 @@ const MyReview = () => {
   const handleDelete = id =>{
     const proceed = window.confirm('Are you sure, you want to cancel this order');
     if(proceed){
-        fetch(`http://localhost:5000/myReviews/${id}`, {
+        fetch(`https://dentist-server-alpha.vercel.app/myReviews/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
