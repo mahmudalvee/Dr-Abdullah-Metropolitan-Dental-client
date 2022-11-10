@@ -147,6 +147,7 @@ const ServiceDetails = () => {
           <table className="table lg:w-8/12 sm:w-10/12 mx-auto">
             <thead>
               <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Review</th>
               </tr>
