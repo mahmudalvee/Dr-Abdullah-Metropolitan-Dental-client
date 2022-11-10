@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router-dom";
 import { FcRating } from "react-icons/fc";
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import ServiceReviewCard from "./ServiceReviewCard";
+import toast, { Toaster } from 'react-hot-toast';
 
 const ServiceDetails = () => {
   const { _id, img, price, title, rating, description } = useLoaderData();
@@ -49,7 +50,8 @@ console.log(reviews)
           .then(data => {
               console.log(data)
               if(data.acknowledged){
-                  alert('review placed successfully')
+                toast.success('Review added successfully!');
+                <Toaster />
                   form.reset();
                   window.location.reload();
               }

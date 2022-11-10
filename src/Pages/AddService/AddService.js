@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddService = () => {
-    const { user } = useContext(AuthContext);
 
     const handlePlaceService = event => {
         event.preventDefault();
@@ -32,7 +31,8 @@ const AddService = () => {
             .then(data => {
                 console.log(data)
                 if(data.acknowledged){
-                    alert('review placed successfully')
+                    toast.success('Service added successfully!');
+                <Toaster />
                     form.reset();
                 }
             })

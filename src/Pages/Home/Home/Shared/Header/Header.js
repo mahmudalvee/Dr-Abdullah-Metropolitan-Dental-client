@@ -1,29 +1,31 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../../../dentist-assets/logo.png";
-import { RiUserSharedFill, RiUserUnfollowFill } from 'react-icons/ri';
+import { RiUserSharedFill, RiUserUnfollowFill } from "react-icons/ri";
 import { AuthContext } from "../../../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const {user}= useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const menuItems = (
     <>
       <li className="font-semibold text-blue-700">
         <Link to="/">Home</Link>
       </li>
-      {
-        user?.email ?
+      {user?.email ? (
         <>
-        <li className="font-semibold text-blue-700">
-        <Link to="/myReviews">My Reviews</Link>
-        </li>
-        <li className="font-semibold text-blue-700">
-        <Link to="/addService">Add Service</Link>
-        </li>
+          <li className="font-semibold text-blue-700">
+            <Link to="/myReviews">My Reviews</Link>
+          </li>
+          <li className="font-semibold text-blue-700">
+            <Link to="/addService">Add Service</Link>
+          </li>
         </>
-        :
+      ) : (
         <></>
-      }
+      )}
+      <li className="font-semibold text-blue-700">
+        <Link to="/blogs">Blog</Link>
+      </li>
     </>
   );
 
@@ -62,12 +64,19 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user?.email ?
-          <Link to='/login'><button className="btn btn glass bg-error text-black btn-xs btn-md"><RiUserUnfollowFill/> Logout</button></Link>
-          :
-          <Link to='/login'><button className="btn btn glass bg-primary text-black btn-xs btn-md"><RiUserSharedFill/> Login</button></Link>
-        }
+        {user?.email ? (
+          <Link to="/login">
+            <button className="btn btn glass bg-error text-black btn-xs btn-md">
+              <RiUserUnfollowFill /> Logout
+            </button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className="btn btn glass bg-primary text-black btn-xs btn-md">
+              <RiUserSharedFill /> Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );
