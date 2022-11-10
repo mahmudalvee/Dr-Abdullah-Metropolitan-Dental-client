@@ -3,11 +3,15 @@ import { Link, useLocation,useNavigate } from 'react-router-dom';
 import img from '../../dentist-assets/login.PNG';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { useContext } from 'react';
+import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider } from 'firebase/auth';
 
 
 const Login = () => {
 
-    const {login} = useContext(AuthContext);
+    const {login, googleLogin} = useContext(AuthContext);
+
+    const googleProvider= new GoogleAuthProvider()
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,6 +25,16 @@ const Login = () => {
         const password = form.password.value;
 
         login(email, password)
+        .then( result => {
+            const user = result.user;
+            console.log(user);
+            navigate(from, {replace: true});
+        })
+        .then(error => console.log(error));
+    }
+
+    const handleGoogleSignIn =() => {
+        googleLogin(googleProvider)
         .then( result => {
             const user = result.user;
             console.log(user);
@@ -57,6 +71,11 @@ const Login = () => {
                             <input className="btn btn glass bg-primary text-black" type="submit" value="Login" />
                         </div>
                     </form>
+                    <div className='mx-auto mb-6'>
+                    <button onClick={handleGoogleSignIn} className="btn btn-ghost text-xl flex"><FcGoogle className='my-auto text-4xl'></FcGoogle>Login with Google</button>
+                        
+                    </div>
+
                     <p className='text-center'>Create an Account! <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link> </p>
                 </div>
             </div>
