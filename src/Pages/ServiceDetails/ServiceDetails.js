@@ -1,14 +1,25 @@
-import React, { useContext }  from "react";
+import React, { useContext, useEffect, useState }  from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import { FcRating } from "react-icons/fc";
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import ServiceReviewCard from "./ServiceReviewCard";
 
 const ServiceDetails = () => {
   const { _id, img, price, title, rating, description } = useLoaderData();
 
-  //review form
+    //all reviews
+  const [reviews, setReviews] = useState([])
+
+  useEffect( () => {
+    fetch(`http://localhost:5000/reviews?service=${_id}`)
+    .then(res => res.json())
+    .then(data => setReviews(data))
+},[_id])
+
+console.log(reviews)
+  //add review form
   const { user } = useContext(AuthContext);
 
   const handlePlaceReview = event => {
@@ -43,9 +54,10 @@ const ServiceDetails = () => {
               }
           })
           .catch(er => console.error(er));
+//review
 
 
-  }
+}
   return (
     <div>
       <div className="mx-auto card card-compact lg:w-8/12 sm:w-10/12 shadow-xl">
@@ -75,7 +87,7 @@ const ServiceDetails = () => {
         </div>
       </div>
 
-      <div className="my-6 lg:w-10/12 sm:11/12 mx-auto">
+      <div className="my-12  mx-auto lg:w-10/12 sm:w-9/12">
             <form onSubmit={handlePlaceReview}>
                 <h2 className="text-3xl text-center text-primary">Share your review about {title} service</h2>
                 <div className='mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4'>
@@ -88,6 +100,28 @@ const ServiceDetails = () => {
                 <input className='btn' type="submit" value="Submit Review" />
                 </div>
             </form>
+        </div>
+        
+        <div>
+        <h2 className="mt-6 text-3xl text-center text-primary underline underline-offset-4 font-bold">User Reviews</h2>
+        <div className="overflow-x-auto w-full mx-auto">
+                <table className="table lg:w-8/12 sm:w-10/12 mx-auto">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Review</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            reviews.map(review => <ServiceReviewCard
+                                key={review._id}
+                                review={review}
+                            ></ServiceReviewCard>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
   );

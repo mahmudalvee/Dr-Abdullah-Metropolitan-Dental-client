@@ -3,7 +3,7 @@ import logo from '../../../../../dentist-assets/logo.png'
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-6 bg-info text-primary-content text-secondary mt-16">
+    <footer className="footer footer-center p-6 bg-info text-secondary mt-16">
       <div>
         <img style={{height: '10rem'}} src={logo} alt="" />
         <p className="font-bold">
