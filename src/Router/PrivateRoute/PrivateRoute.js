@@ -7,12 +7,12 @@ const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthContext);
     const location  = useLocation();
     if(loading) {
-        return <h1 className='text-5xl mx-auto my-auto'><button className="btn btn-square loading"></button></h1>
+        return <div className=' mx-auto my-auto'><h1 className='text-5xl'><button className="btn btn-square loading"></button></h1></div>
     }
     if(user){
         return children;
     }
-    return <Navigate state={{from: location}} replace></Navigate>;
+    return <Navigate to="/login" state={{from: location}} replace></Navigate>;
 };
 
 export default PrivateRoute;

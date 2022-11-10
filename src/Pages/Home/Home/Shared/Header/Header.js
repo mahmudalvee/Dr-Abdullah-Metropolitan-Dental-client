@@ -5,7 +5,14 @@ import { RiUserSharedFill, RiUserUnfollowFill } from "react-icons/ri";
 import { AuthContext } from "../../../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  
+  const handleLogOut = () =>{
+    logOut()
+    .then()
+    .catch();
+  }
+  
   const menuItems = (
     <>
       <li className="font-semibold text-blue-700">
@@ -66,7 +73,7 @@ const Header = () => {
       <div className="navbar-end">
         {user?.email ? (
           <Link to="/login">
-            <button className="btn btn glass bg-error text-black btn-xs btn-md">
+            <button onClick={ handleLogOut } className="btn btn glass bg-error text-black btn-xs btn-md">
               <RiUserUnfollowFill /> Logout
             </button>
           </Link>
