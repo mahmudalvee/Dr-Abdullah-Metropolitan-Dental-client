@@ -12,9 +12,30 @@ const MyReview = () => {
       .then((data) => setReviews(data));
   }, [user?.email]);
 
+  const handleDelete = id =>{
+    const proceed = window.confirm('Are you sure, you want to cancel this order');
+    if(proceed){
+        fetch(`http://localhost:5000/myReviews/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            if (data.deletedCount > 0){
+                alert('deleted successfully');
+                const remaining = reviews.filter(odr => odr._id !== id);
+                setReviews(remaining);
+            }
+        })
+    }
+}
+
   return (
     <div>
-      <h2 className="mt-6 text-2xl text-center text-primary underline underline-offset-4 font-bold ">
+      {
+        reviews?.length ?
+        <>
+        <h2 className="mt-6 text-2xl text-center text-primary underline underline-offset-4 font-bold ">
         You have total {reviews.length} review(s)
       </h2>
             <div className="overflow-x-auto lg:w-10/12 sm:12/12 mx-auto">
@@ -32,11 +53,20 @@ const MyReview = () => {
                     <MyReviewCard
                         key={review._id}
                         review={review}
+                        handleDelete={handleDelete}
                     ></MyReviewCard>
                     ))}
                 </tbody>
                 </table>
             </div>
+        </>
+        :
+        <>
+        <h2 className="mt-6 text-2xl text-center text-primary underline underline-offset-4 font-bold ">
+        No reviews are added by You.
+      </h2>
+        </>
+      }
     </div>
   );
 };
