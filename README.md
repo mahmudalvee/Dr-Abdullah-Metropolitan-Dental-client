@@ -1,8 +1,8 @@
-Website Name: Dr. Abdullah's Metropolitan Dental
+**Dr. Abdullah's Metropolitan Dental**
 
 link: https://dr-abdullah-dental.web.app
 
-Website features:
+**Website features:**
 * Dynamic data fetching from Mongodb server
 * Google, regular login-registration using Firebase
 * react image-view of full screen
@@ -10,7 +10,7 @@ Website features:
 * User can add review by Create operation
 * User can delete review by Delete operation
 
-Framework/Library:
+**Framework/Library:**
 * React
 * Vercel
 * Mongodb
